@@ -1,9 +1,25 @@
+// import { Navigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+
 export default function Profile() {
+    const { email: currentUser } = useSelector((state) => state.auth)
+
+    console.log(currentUser)
+    // if (!currentUser) {
+    //     return <Navigate to="/SignIn" />
+    // }
+
     return (
         <main className="main bg-dark">
       <div className="header">
-        <h1>Welcome back<br />Tony Jarvis!</h1>
+        <h1>Welcome back
+          {currentUser}!
+        </h1>
         <button className="edit-button">Edit Name</button>
+        {/* <p>
+        <strong>Token:</strong> {currentUser.accessToken.substring(0, 20)} ...{" "}
+        {currentUser.accessToken.substr(currentUser.accessToken.length - 20)}
+      </p> */}
       </div>
       <h2 className="sr-only">Accounts</h2>
       <section className="account">

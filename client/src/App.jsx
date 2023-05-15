@@ -4,14 +4,13 @@ import Profile from './pages/Profile'
 import SignIn from './pages/SignIn'
 import NotFound from './pages/404'
 import Footer from './components/Footer'
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import './App.css'
 
 function App() {
   return (
     <>
-      <Router>
         <Navbar />
         <Routes>
           <Route exact path="/" element={<Home />} />
@@ -19,7 +18,6 @@ function App() {
           <Route path="/Profile" element={<Profile />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
-      </Router>
       <Footer />
     </>
   )
