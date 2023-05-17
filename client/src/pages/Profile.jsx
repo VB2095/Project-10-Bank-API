@@ -1,25 +1,36 @@
-// import { Navigate } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
+import { useState } from 'react';
 import { useSelector } from 'react-redux'
-
+import { useGetUserDetailsQuery } from "../app/services/authService";
+import UpdateForm from '../components/UpdateForm'
 export default function Profile() {
-    const { email: currentUser } = useSelector((state) => state.auth)
+  const { userInfo } = useSelector((state) => state.auth)
+  const [isFormVisible, setFormVisible] = useState(false);
+  const userDetailsQuery = useGetUserDetailsQuery();
+  const  userData = userDetailsQuery.data;
+  console.log("Data: ", userData)
+  console.log("User details query: ", userDetailsQuery.data)
+  console.log("Details query: ", useGetUserDetailsQuery("userDetails"))
+  
+  
+  
+  if (!userInfo) {
+        return <Navigate to="/SignIn" />
+    }
 
-    console.log(currentUser)
-    // if (!currentUser) {
-    //     return <Navigate to="/SignIn" />
-    // }
-
+    
     return (
         <main className="main bg-dark">
       <div className="header">
-        <h1>Welcome back
-          {currentUser}!
-        </h1>
-        <button className="edit-button">Edit Name</button>
-        {/* <p>
-        <strong>Token:</strong> {currentUser.accessToken.substring(0, 20)} ...{" "}
-        {currentUser.accessToken.substr(currentUser.accessToken.length - 20)}
-      </p> */}
+        <h1>Welcome back {userInfo.body.firstName} {userInfo.body.lastName}!</h1>
+        {!isFormVisible && (
+      <button className="edit-button" onClick={() => setFormVisible(true)}>
+        Edit Name
+      </button>
+    )}
+    {isFormVisible && (
+      <UpdateForm setFormVisible={setFormVisible} />
+    )}
       </div>
       <h2 className="sr-only">Accounts</h2>
       <section className="account">
