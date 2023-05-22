@@ -1,18 +1,13 @@
 import { Navigate } from 'react-router-dom'
 import { useState } from 'react';
 import { useSelector } from 'react-redux'
-import { useGetUserDetailsQuery } from "../app/services/authService";
+
 import UpdateForm from '../components/UpdateForm'
 export default function Profile() {
-  const { userInfo } = useSelector((state) => state.auth)
-  const [isFormVisible, setFormVisible] = useState(false);
-  const userDetailsQuery = useGetUserDetailsQuery();
-  const  userData = userDetailsQuery.data;
-  console.log("Data: ", userData)
-  console.log("User details query: ", userDetailsQuery.data)
-  console.log("Details query: ", useGetUserDetailsQuery("userDetails"))
-  
-  
+  //get user info from redux store that come from the signin action 
+    const { userInfo } = useSelector((state) => state.auth);
+    const [isFormVisible, setFormVisible] = useState(false);
+    
   
   if (!userInfo) {
         return <Navigate to="/SignIn" />

@@ -40,7 +40,7 @@ export default function SignIn() {
                     <input type="checkbox" id="remember-me" />
                     <label htmlFor="remember-me">Remember me</label>
                 </div> */}
-          <button className="sign-in-button">Sign In</button>
+          <button className="sign-in-button" disabled={loading}>{loading ? 'Loading' : 'Login'}</button>
         </form>
       </section>
     </main>

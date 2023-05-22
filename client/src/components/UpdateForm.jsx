@@ -46,7 +46,7 @@ const UpdateForm = ({ setFormVisible }) => {
           required
         />
       </div>
-      <button type="submit" className="sign-in-button">
+      <button type="submit" className="sign-in-button" onClick={handleSubmit}>
         Update
       </button>
       <button className="sign-in-button" onClick={() => setFormVisible(false)}>

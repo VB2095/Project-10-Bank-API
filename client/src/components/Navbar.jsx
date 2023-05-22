@@ -10,7 +10,7 @@ export default function Navbar() {
   const dispatch = useDispatch();
 
   const { data} = useGetUserDetailsQuery('userDetails', {
-    pollingInterval: 900000,
+    pollingInterval: 90000,
 
   })
   const logoutHandler = () => {
