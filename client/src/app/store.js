@@ -3,7 +3,7 @@ import authReducer from "../features/auth/authSlice";
 import updateReducer from "../features/update/updateSlice";
 import { authApi } from "../app/services/authService";
 
-export default configureStore({
+const store = configureStore({
   reducer: {
     auth: authReducer,
     update: updateReducer,
@@ -12,3 +12,4 @@ export default configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(authApi.middleware),
 });
+export default store;

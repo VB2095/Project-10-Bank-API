@@ -5,11 +5,12 @@ import { useGetUserDetailsQuery } from "../app/services/authService";
 import { logout, setCredentials } from '../features/auth/authSlice'
 import { useEffect } from "react";
 
+
 export default function Navbar() {
   const { userInfo } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
-  const { data} = useGetUserDetailsQuery('userDetails', {
+  const { data } = useGetUserDetailsQuery('userDetails', {
     pollingInterval: 90000,
 
   })
@@ -20,7 +21,6 @@ export default function Navbar() {
   useEffect(() => {
     if (data) { dispatch(setCredentials(data)) }
   }, [data, dispatch])
-
 
 
   return (

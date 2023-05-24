@@ -293,3 +293,21 @@ body {
     width: 200px;
   }
 }
+
+.updateForm {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  align-items: center;
+}
+
+.updateForm_inputs {
+  display: flex;
+  gap: 10px;
+}
+
+.updateForm_buttons {
+  display: flex;
+  gap: 10px;
+}

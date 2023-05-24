@@ -12,8 +12,8 @@ const UpdateForm = ({ setFormVisible }) => {
     e.preventDefault();
     dispatch(updateUserProfile({ firstName, lastName }))
       .then(() => {
-        // Succès de la mise à jour du profil
-        // Vous pouvez effectuer des actions supplémentaires ici
+        window.location.reload();
+        dispatch({ type: 'auth/updateUserName', payload: { firstName, lastName } });
         setFormVisible(false); // Masquer le formulaire après la mise à jour
       })
       .catch((error) => {
@@ -23,35 +23,40 @@ const UpdateForm = ({ setFormVisible }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="input-wrapper">
-        <label htmlFor="firstName">First Name</label>
-        <input
-          type="text"
-          id="firstName"
-          name="firstName"
-          value={firstName}
-          onChange={(e) => setFirstName(e.target.value)}
-          required
-        />
+    <form onSubmit={handleSubmit} className='updateForm'>
+      <div className='updateForm_inputs'>
+        <div className="input-wrapper">
+          <label htmlFor="firstName">First Name</label>
+          <input
+            type="text"
+            id="firstName"
+            name="firstName"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+            required
+          />
+        </div>
+        <div className="input-wrapper">
+          <label htmlFor="lastName">Last Name</label>
+          <input
+            type="text"
+            id="lastName"
+            name="lastName"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+            required
+          />
+        </div>
       </div>
-      <div className="input-wrapper">
-        <label htmlFor="lastName">Last Name</label>
-        <input
-          type="text"
-          id="lastName"
-          name="lastName"
-          value={lastName}
-          onChange={(e) => setLastName(e.target.value)}
-          required
-        />
+      <div className='updateForm_buttons'>
+        <button type="submit" className="sign-in-button" onClick={handleSubmit}>
+          Update
+        </button>
+        <button className="sign-in-button" onClick={() => setFormVisible(false)}>
+          Cancel
+        </button>
       </div>
-      <button type="submit" className="sign-in-button" onClick={handleSubmit}>
-        Update
-      </button>
-      <button className="sign-in-button" onClick={() => setFormVisible(false)}>
-        Cancel
-      </button>
+     
     </form>
   );
 };
