@@ -14,11 +14,17 @@ paths:
       tags:
         - Transactions Module
       summary: Get All Transactions
-      description: Retrieve all transactions for the current month
+      description: Retrieve all transactions for the specified month and year
       parameters:
         - in: query
           name: month
-          description: Filter transactions by month
+          description: Filter transactions by month (format: MM)
+          required: false
+          type: string
+          format: date
+        - in: query
+          name: year
+          description: Filter transactions by year (format: YYYY)
           required: false
           type: string
           format: date
